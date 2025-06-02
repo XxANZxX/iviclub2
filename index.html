@@ -48,7 +48,7 @@
             background-color: #374151;
             border: 1px solid #4b5563;
         }
-        .gemini-button { /* Keeping class name for now to avoid large scale rename, but it's now for OpenAI */
+        .gemini-button { /* Имя класса сохранено для минимизации правок, но теперь это для OpenRouter */
             background-color: #4f46e5;
             color: white;
             padding: 0.5rem 1rem;
@@ -143,7 +143,7 @@
                     </div>
 
                     <p class="text-lg text-gray-400 mb-8">
-                        Это <strong class="text-indigo-300">интерактивное руководство</strong> создано, чтобы помочь вам быстро находить и понимать все правила нашего RP-сервера по Stellaris. Используйте навигацию слева для перемещения по разделам или воспользуйтесь поиском. Новые функции с ✨ помогут вам глубже понять правила и найти вдохновение для игры!
+                        Это <strong class="text-indigo-300">интерактивное руководство</strong> создано, чтобы помочь вам быстро находить и понимать все правила нашего RP-сервера по Stellaris. Используйте навигацию слева для перемещения по разделам или воспользуйтесь поиском. Функции ИИ (кнопки с ✨) теперь работают через OpenRouter.ai – вам понадобится ваш API ключ от этого сервиса.
                     </p>
                     
                     <div class="rule-card" data-search="ключевая идея ролевая игра доверие">
@@ -505,7 +505,7 @@
         </main>
     </div>
 
-    <div id="gemini-modal" class="fixed inset-0 modal hidden items-center justify-center z-50 p-4">
+    <div id="ai-modal" class="fixed inset-0 modal hidden items-center justify-center z-50 p-4">
         <div class="modal-content-area p-6 rounded-lg shadow-xl max-w-2xl w-full flex flex-col">
             <div class="flex justify-between items-center mb-4 flex-shrink-0">
                 <h3 id="ai-modal-title" class="text-2xl font-semibold text-white">Ответ от ИИ</h3>
@@ -527,7 +527,7 @@
             const sidebar = document.getElementById('sidebar');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             
-            const aiModal = document.getElementById('gemini-modal'); // ID остался gemini-modal, можно переименовать если хотите
+            const aiModal = document.getElementById('ai-modal'); 
             const aiModalTitle = document.getElementById('ai-modal-title');
             const aiLoadingIndicator = document.getElementById('ai-loading-indicator');
             const aiResponseContent = document.getElementById('ai-response-content');
@@ -623,10 +623,13 @@
                 aiLoadingIndicator.classList.remove('hidden');
                 aiResponseContent.innerHTML = '';
 
-                const apiKey = "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";
-                const apiUrl = "https://api.openai.com/v1/chat/completions";
+                const apiKey = "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";
+                const siteUrl = window.location.origin || "https://your-default-site.neocities.org"; // Замените на ваш URL или оставьте для локального тестирования
+                const siteName = "Иви-клуб Правила"; // Название вашего сайта
+
+                const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
                 const payload = {
-                    model: "gpt-3.5-turbo", // или "gpt-4", если у вас есть доступ
+                    model: "mistralai/mistral-7b-instruct-v0.2", // Пример модели, выберите на OpenRouter
                     messages: [{ role: "user", content: prompt }]
                 };
 
@@ -639,7 +642,9 @@
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${apiKey}`
+                                'Authorization': `Bearer ${apiKey}`,
+                                'HTTP-Referer': siteUrl, 
+                                'X-Title': siteName 
                             },
                             body: JSON.stringify(payload)
                         });
@@ -647,28 +652,28 @@
                         if (!response.ok) {
                             const errorData = await response.json().catch(() => ({ error: { message: response.statusText + " (не удалось получить детали ошибки)" } }));
                             
-                            // OpenAI использует 429 для лимитов/перегрузки, 5xx для ошибок сервера
                             if ((response.status === 429 || response.status >= 500 ) && attempt < MAX_ATTEMPTS) {
                                 aiLoadingIndicator.classList.add('hidden');
-                                aiResponseContent.innerHTML = `Сервер API перегружен или запрос отклонен. Повторная попытка ${attempt + 1} из ${MAX_ATTEMPTS} через ${RETRY_DELAY / 1000} сек...`;
+                                aiResponseContent.innerHTML = `Сервер OpenRouter API перегружен или запрос отклонен. Повторная попытка ${attempt + 1} из ${MAX_ATTEMPTS} через ${RETRY_DELAY / 1000} сек...`;
                                 await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
                                 aiLoadingIndicator.classList.remove('hidden');
                                 aiResponseContent.innerHTML = ''; 
                                 continue; 
                             }
 
-                            let errorMessage = `Ошибка API: ${errorData.error?.message || response.statusText} (Статус: ${response.status})`;
+                            let errorMessage = `Ошибка OpenRouter API: ${errorData.error?.message || response.statusText} (Статус: ${response.status})`;
                             if (response.status === 401) {
-                                errorMessage = "Ошибка API: Недействительный API ключ или проблемы с авторизацией OpenAI. Проверьте ваш ключ. (Статус: 401)";
+                                errorMessage = "Ошибка OpenRouter API: Недействительный API ключ или проблемы с авторизацией. Проверьте ваш ключ. (Статус: 401)";
+                            } else if (response.status === 402) { // Payment Required
+                                errorMessage = "Ошибка OpenRouter API: Требуется оплата или недостаточно средств на счете OpenRouter. (Статус: 402)";
                             } else if (response.status === 429) {
-                                errorMessage = "Ошибка API: Превышен лимит запросов к OpenAI или квота исчерпана. Пожалуйста, проверьте ваш тарифный план или попробуйте позже. (Статус: 429)";
+                                errorMessage = "Ошибка OpenRouter API: Превышен лимит запросов или квота исчерпана. Пожалуйста, проверьте ваш тарифный план или попробуйте позже. (Статус: 429)";
                             } else if (response.status >= 500) { 
-                                errorMessage = `Ошибка API: Внутренняя ошибка сервера OpenAI (${response.status}). Пожалуйста, попробуйте позже.`;
+                                errorMessage = `Ошибка OpenRouter API: Внутренняя ошибка сервера (${response.status}). Пожалуйста, попробуйте позже.`;
                             }
                             throw new Error(errorMessage);
                         }
 
-                        // Успех
                         const result = await response.json();
                         if (result.choices && result.choices.length > 0 && result.choices[0].message && result.choices[0].message.content) {
                             let text = result.choices[0].message.content;
@@ -682,7 +687,7 @@
                             text = text.replace(/(\r\n|\r|\n)/g, '<br>'); 
                             aiResponseContent.innerHTML = text;
                         } else {
-                            throw new Error("Не удалось получить структурированный ответ от ИИ (OpenAI).");
+                            throw new Error("Не удалось получить структурированный ответ от ИИ (OpenRouter).");
                         }
                         aiLoadingIndicator.classList.add('hidden');
                         return; 
@@ -694,7 +699,7 @@
                             aiLoadingIndicator.classList.add('hidden');
                             return; 
                         }
-                         if (!( (error.message.includes("Сервер API перегружен") || error.message.includes("запрос отклонен")) && attempt < MAX_ATTEMPTS) ) {
+                         if (!( (error.message.includes("Сервер OpenRouter API перегружен") || error.message.includes("запрос отклонен")) && attempt < MAX_ATTEMPTS) ) {
                              aiResponseContent.textContent = error.message;
                              aiLoadingIndicator.classList.add('hidden');
                              return; 
@@ -726,7 +731,7 @@
                     ruleTextContent = ruleTextContent.replace(/✨ Разъяснить/gi, '').replace(/Пример:/gi, '').trim();
 
                     if (ruleTextContent) {
-                        aiModalTitle.textContent = "Разъяснение правила (от OpenAI)";
+                        aiModalTitle.textContent = "Разъяснение правила";
                         const prompt = `Пожалуйста, объясни следующее правило из игры Stellaris максимально простыми словами, приведи короткий пример его применения или ситуации, когда оно важно. Ответ дай на русском языке. Правило: "${ruleTextContent}"`;
                         callAIAPI(prompt);
                     } else {
@@ -742,7 +747,7 @@
             const suggestRpScenarioButton = document.getElementById('suggest-rp-scenario-button');
             if (suggestRpScenarioButton) {
                 suggestRpScenarioButton.addEventListener('click', () => {
-                    aiModalTitle.textContent = "Предложение RP сценария (от OpenAI)";
+                    aiModalTitle.textContent = "Предложение RP сценария";
                     const prompt = `Привет! Я играю в Stellaris RP. Пожалуйста, создай короткий (2-3 абзаца) сценарий для ролевой игры в Stellaris. Сценарий должен быть на русском языке и включать завязку и несколько возможных путей развития для игроков. Тема может быть любой из следующих: первый контакт с ранее неизвестной цивилизацией, внутренний политический кризис в империи, обнаружение древнего и могущественного артефакта, неожиданная галактическая угроза (например, вторжение или космическая аномалия). Сделай его интересным и подходящим для отыгрыша.`;
                     callAIAPI(prompt);
                 });
@@ -751,7 +756,7 @@
             const generateNamesButton = document.getElementById('generate-names-button');
             if (generateNamesButton) {
                 generateNamesButton.addEventListener('click', () => {
-                    aiModalTitle.textContent = "Генератор Названий (от OpenAI)";
+                    aiModalTitle.textContent = "Генератор Названий";
                     const prompt = `Привет! Сгенерируй, пожалуйста, список из 7-10 разнообразных названий, подходящих для научно-фантастической вселенной Stellaris. Включи несколько вариантов для названий империй, несколько для планет, несколько для кораблей и несколько для лидеров. Ответ дай на русском языке, сгруппируй по категориям (Империи, Планеты, Корабли, Лидеры), если возможно, и представь в виде списка.`;
                     callAIAPI(prompt);
                 });
@@ -766,7 +771,7 @@
                     const sectionTitle = titleElement ? titleElement.textContent.trim() : "Текущий раздел";
                     const sectionIntro = introParagraphElement ? introParagraphElement.textContent.trim() : "Общая информация по данному разделу.";
                     
-                    aiModalTitle.textContent = `Кратко: ${sectionTitle} (от OpenAI)`;
+                    aiModalTitle.textContent = `Кратко: ${sectionTitle}`;
                     const prompt = `Пожалуйста, сделай очень краткое содержание (буквально 2-3 предложения, самую суть) для раздела правил Stellaris под названием "${sectionTitle}". Этот раздел обычно описывает следующее: "${sectionIntro}". Сосредоточься на ключевых моментах, которые игрок должен запомнить из этого раздела. Ответ дай на русском языке.`;
                     callAIAPI(prompt);
                 });
