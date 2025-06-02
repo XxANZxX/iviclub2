@@ -146,6 +146,11 @@
                         Это <strong class="text-indigo-300">интерактивное руководство</strong> создано, чтобы помочь вам быстро находить и понимать все правила нашего RP-сервера по Stellaris. Используйте навигацию слева для перемещения по разделам или воспользуйтесь поиском. Новые функции с ✨ помогут вам глубже понять правила и найти вдохновение для игры!
                     </p>
                     
+                    <div class="bg-yellow-800 bg-opacity-30 border border-yellow-700 text-yellow-300 px-4 py-3 rounded-lg relative mt-6 mb-8 text-sm" role="alert">
+                        <strong class="font-bold">Важное примечание:</strong>
+                        <span class="block sm:inline"> Для пользователей из некоторых регионов (например, РФ), для корректной работы функций ИИ (кнопки с ✨) может потребоваться использование VPN-сервиса, так как доступ к API Google может быть ограничен.</span>
+                    </div>
+
                     <div class="rule-card" data-search="ключевая идея ролевая игра доверие">
                         <h3 class="text-xl font-semibold text-white mb-2">Ключевая идея сервера</h3>
                         <p class="text-gray-400">Данный сервер был создан именно для ролевой игры. Мы просим относиться к данным правилам не как к незыблемому граниту, а как к руководству для создания лучшего общего опыта. Доверие — основной принцип нашего сервера, и мы надеемся, что все просто хорошо проведут время. Удачной игры!</p>
@@ -625,52 +630,79 @@
 
                 const apiKey = "AIzaSyA9zNPLpChMb2IqDLgH_KdFqN6W6TvZQis";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                
-                const payload = {
-                    contents: [{ role: "user", parts: [{ text: prompt }] }]
-                };
+                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
 
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        console.error("Gemini API Error Details:", errorData);
-                        throw new Error(`Ошибка API: ${errorData.error?.message || response.statusText} (Статус: ${response.status})`);
-                    }
+                const MAX_ATTEMPTS = 2; // Начальная попытка + 1 повтор
+                const RETRY_DELAY = 3000; // 3 секунды
 
-                    const result = await response.json();
+                for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
 
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        let text = result.candidates[0].content.parts[0].text;
-                        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); 
-                        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');     
-                        text = text.replace(/^\s*-\s+(.*)/gm, '<li>$1</li>');
-                        if (text.includes('<li>')) {
-                            text = '<ul>' + text.replace(/<\/li>\s*<li>/g, '</li><li>') + '</ul>';
+                        if (!response.ok) {
+                            const errorData = await response.json().catch(() => ({ error: { message: response.statusText + " (не удалось получить детали ошибки)" } }));
+                            
+                            if (response.status === 503 && attempt < MAX_ATTEMPTS) {
+                                geminiLoadingIndicator.classList.add('hidden');
+                                geminiResponseContent.innerHTML = `Серверы ИИ перегружены. Повторная попытка ${attempt + 1} из ${MAX_ATTEMPTS} через ${RETRY_DELAY / 1000} сек...`;
+                                await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+                                geminiLoadingIndicator.classList.remove('hidden');
+                                geminiResponseContent.innerHTML = ''; // Очистить сообщение о повторе
+                                continue; // Перейти к следующей попытке
+                            }
+
+                            let errorMessage = `Ошибка API: ${errorData.error?.message || response.statusText} (Статус: ${response.status})`;
+                            if (response.status === 400 && errorData.error?.message?.toLowerCase().includes("user location is not supported")) {
+                                errorMessage = "Использование API не поддерживается из вашего текущего местоположения. Для доступа к этим функциям может потребоваться VPN, если вы находитесь в регионе с ограничениями (например, РФ).";
+                            } else if (response.status === 503) { // Постоянная ошибка 503 после всех попыток
+                                errorMessage = "Серверы ИИ перегружены. Пожалуйста, попробуйте значительно позже.";
+                            }
+                            throw new Error(errorMessage);
                         }
-                        text = text.replace(/(\r\n|\r|\n){2,}/g, '<br><br>'); 
-                        text = text.replace(/(\r\n|\r|\n)/g, '<br>'); 
-                        geminiResponseContent.innerHTML = text;
-                    } else if (result.promptFeedback && result.promptFeedback.blockReason) {
-                         console.error("Gemini API Blocked:", result.promptFeedback);
-                        geminiResponseContent.textContent = `Ответ был заблокирован по причине: ${result.promptFeedback.blockReason}. Пожалуйста, измените запрос.`;
+
+                        // Успех
+                        const result = await response.json();
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            let text = result.candidates[0].content.parts[0].text;
+                            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); 
+                            text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');     
+                            text = text.replace(/^\s*-\s+(.*)/gm, '<li>$1</li>');
+                            if (text.includes('<li>')) {
+                                text = '<ul>' + text.replace(/<\/li>\s*<li>/g, '</li><li>') + '</ul>';
+                            }
+                            text = text.replace(/(\r\n|\r|\n){2,}/g, '<br><br>'); 
+                            text = text.replace(/(\r\n|\r|\n)/g, '<br>'); 
+                            geminiResponseContent.innerHTML = text;
+                        } else if (result.promptFeedback && result.promptFeedback.blockReason) {
+                             geminiResponseContent.textContent = `Ответ был заблокирован по причине: ${result.promptFeedback.blockReason}. Пожалуйста, измените запрос.`;
+                        } else {
+                            geminiResponseContent.textContent = "Не удалось получить структурированный ответ от ИИ.";
+                        }
+                        geminiLoadingIndicator.classList.add('hidden');
+                        return; // Успех, выйти из функции
+
+                    } catch (error) {
+                        console.error(`Попытка ${attempt} не удалась:`, error);
+                        if (attempt >= MAX_ATTEMPTS) {
+                            geminiResponseContent.textContent = error.message;
+                            geminiLoadingIndicator.classList.add('hidden');
+                            return; 
+                        }
+                        // Если это была не ошибка 503, которая обрабатывается `continue`, или другая сетевая ошибка на ранней попытке,
+                        // и мы не хотим повторять другие типы ошибок, то ошибка будет отображена здесь и цикл прервется.
+                        // Для данной реализации мы явно повторяем только 503.
+                         if (error.message && !(error.message.includes("Серверы ИИ перегружены") && attempt < MAX_ATTEMPTS) ) {
+                             geminiResponseContent.textContent = error.message;
+                             geminiLoadingIndicator.classList.add('hidden');
+                             return; // Прервать, если ошибка не 503 или последняя попытка
+                         }
                     }
-                    else {
-                        console.error("Unexpected Gemini API response structure:", result);
-                        geminiResponseContent.textContent = "Не удалось получить структурированный ответ от ИИ.";
-                    }
-                } catch (error) {
-                    console.error("Error calling Gemini API:", error);
-                    geminiResponseContent.textContent = `Произошла ошибка при обращении к ИИ: ${error.message}`;
-                } finally {
-                    geminiLoadingIndicator.classList.add('hidden');
                 }
             }
 
@@ -682,7 +714,6 @@
                     ruleCard.childNodes.forEach(node => {
                         if (node.nodeType === Node.ELEMENT_NODE && !node.classList.contains('gemini-button') && node.tagName.toLowerCase() !== 'h2' && node.tagName.toLowerCase() !== 'h3') {
                             if (node.querySelector('img.rule-example-image') && node.querySelector('img.rule-example-image').alt.includes('Не удалось загрузить')) {
-                                // 
                             } else {
                                 ruleTextContent += node.textContent.trim() + " ";
                             }
@@ -764,3 +795,15 @@
     </script>
 </body>
 </html>
+```
+
+**Ключевые изменения:**
+
+1.  **Уведомление о VPN в секции `#welcome`**: Добавлен стилизованный блок с информацией о возможной необходимости VPN.
+2.  **Обновленная функция `callGeminiAPI`**:
+    * Теперь она пытается выполнить запрос до `MAX_ATTEMPTS` раз (сейчас это 2 раза: начальная + 1 повторная).
+    * Если первая попытка возвращает ошибку 503 (сервер перегружен), скрипт ждет `RETRY_DELAY` (3 секунды) и пробует снова, показывая сообщение о повторной попытке.
+    * Если ошибка 400 (неподдерживаемая локация) или постоянная 503, или любая другая ошибка, будет отображено соответствующее, более информативное сообщение.
+    * Логика обработки ошибок внутри цикла и `catch` блока была уточнена.
+
+Надеюсь, эти изменения улучшат пользовательский опыт при возникновении данных проблем! Не забудьте вставить ваш действующий API ключ в `const apiKey = ""
