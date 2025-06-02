@@ -48,48 +48,6 @@
             background-color: #374151;
             border: 1px solid #4b5563;
         }
-        .gemini-button { /* Имя класса сохранено для минимизации правок, но теперь это для OpenRouter */
-            background-color: #4f46e5;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            transition: background-color 0.2s;
-            cursor: pointer;
-            border: none;
-            margin-top: 0.75rem; 
-        }
-        .gemini-button:hover {
-            background-color: #4338ca;
-        }
-        .action-button-group .gemini-button {
-             margin-top: 0; 
-        }
-        .modal {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        .modal-content-area {
-            background-color: #1f2937;
-            max-height: 80vh; 
-        }
-        .loader {
-            border: 4px solid #374151;
-            border-top: 4px solid #818cf8;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .prose-custom br { 
-            content: "";
-            display: block;
-            margin-bottom: 0.5em; 
-        }
         .rule-example-image {
             max-width: 100%;
             height: auto;
@@ -143,7 +101,7 @@
                     </div>
 
                     <p class="text-lg text-gray-400 mb-8">
-                        Это <strong class="text-indigo-300">интерактивное руководство</strong> создано, чтобы помочь вам быстро находить и понимать все правила нашего RP-сервера по Stellaris. Используйте навигацию слева для перемещения по разделам или воспользуйтесь поиском. Функции ИИ (кнопки с ✨) теперь работают через OpenRouter.ai – вам понадобится ваш API ключ от этого сервиса.
+                        Это <strong class="text-indigo-300">интерактивное руководство</strong> создано, чтобы помочь вам быстро находить и понимать все правила нашего RP-сервера по Stellaris. Используйте навигацию слева для перемещения по разделам или воспользуйтесь поиском.
                     </p>
                     
                     <div class="rule-card" data-search="ключевая идея ролевая игра доверие">
@@ -155,11 +113,9 @@
                 <section id="general" class="content-section hidden">
                     <h1 class="text-3xl font-bold text-white mb-6">1. Общие положения</h1>
                     <p class="text-gray-400 mb-8 intro-paragraph">Этот раздел определяет основные принципы и цели наших игровых сессий, а также роль и полномочия Организатора. Понимание этих основ необходимо для всех участников, чтобы обеспечить честную и приятную игру.</p>
-                    <button class="gemini-button summarize-section-button mb-6">✨ Кратко об этом разделе</button>
                     <div class="rule-card" data-search="рп партии удовольствие впечатления времяпрепровождение">
                         <h2 class="text-xl font-semibold text-white mb-2">1.1. Цель игры</h2>
                         <p>RP-партии по стеларису направлены исключительно на получение удовольствия и ярких последующих впечатлений. Данные правила направлены на хорошее времяпрепровождение.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="организатор представитель сервера решения полномочия регистрация надсмотр принуждение исключение">
                         <h2 class="text-xl font-semibold text-white mb-2">1.2. Организатор</h2>
@@ -170,41 +126,34 @@
                             <li>Возможность принуждения игроков выполнить действия, направленные на соблюдение правил или же норм ролевой игры.</li>
                             <li>Возможность исключить игроков если те каким-либо способом мешают проведению игры.</li>
                         </ul>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="лимит времени сессия 5 часов завершение приостановка продление">
                         <h2 class="text-xl font-semibold text-white mb-2">1.3. Время сессии</h2>
                         <p>Лимит времени на одну игровую сессию <strong class="accent-text">5 часов</strong>, после чего игра либо завершается, либо приостанавливается до следующей сессии. Которая проводится, по общим правилам, на следующий день в установленное время.</p>
                         <p class="mt-2 text-sm text-gray-400">1.3.1. В случае если игроки единогласно решили продлить сессию, игра будет продлена на определенный срок.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="выход из партии обоснование причины">
                         <h2 class="text-xl font-semibold text-white mb-2">1.4. Выход из партии</h2>
                         <p>Выход из партии должен быть обоснован, в случае непредставления причин, ведущий вправе не принимать вас на последующие партии.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="незнание правил ответственность">
                         <h2 class="text-xl font-semibold text-white mb-2">1.5. Ответственность</h2>
                         <p>Незнание правил не освобождает вас от ответственности.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                 </section>
                 
                 <section id="creation" class="content-section hidden">
                     <h1 class="text-3xl font-bold text-white mb-6">Создание государства</h1>
                     <p class="text-gray-400 mb-8 intro-paragraph">Здесь собраны все ограничения, касающиеся создания вашей империи. Правильный выбор происхождения, принципов и гражданских моделей — ключ к успешному и сбалансированному старту в галактике.</p>
-                    <button class="gemini-button summarize-section-button mb-6">✨ Кратко об этом разделе</button>
                     
                     <h2 class="text-2xl font-bold text-white mt-6 mb-4">2. Происхождения</h2>
                     <div class="rule-card" data-search="происхождение уникальное успешное объединение">
                         <h3 class="text-lg font-semibold text-white mb-2">2.1. Уникальность происхождения</h3>
                         <p>Происхождение должно являться уникальным в галактике, за исключением успешного объединения.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="происхождение олицетворение принципы гражданские модели">
                         <h3 class="text-lg font-semibold text-white mb-2">2.2. Соответствие происхождения</h3>
                         <p>Происхождение должно олицетворять ваши принципы/гражданские модели.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="запрещенные происхождения отпрыски общие взгляды гегемон потерянная колония имперский феод расплата сброшенные оковы синтетическая репродуктивность">
                         <h3 class="text-lg font-semibold danger-text mb-2">2.3. ❌ Запрещенные происхождения</h3>
@@ -218,7 +167,6 @@
                             <li>Сброшенные оковы</li>
                             <li>Синтетическая репродуктивность</li>
                         </ul>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card warning-bg border-l-4" data-search="происхождения ограничения отыгровка расколотое кольцо жители пустоты армия клонов разогнанные дуговые сварщики кибернетический культ рыцари токсичного бога">
                         <h3 class="text-lg font-semibold warning-text mb-2">2.3.1. ⚠️ Происхождения с ограничениями</h3>
@@ -232,79 +180,65 @@
                             <li>Кибернетический культ</li>
                             <li>Рыцари токсичного бога</li>
                         </ul>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <h2 class="text-2xl font-bold text-white mt-8 mb-4">3. Правительство/принципы/признаки</h2>
                     <div class="rule-card danger-bg border-l-4" data-search="гештальт-сознание машины">
                         <h3 class="text-lg font-semibold danger-text mb-2">3.1. ❌ Ограничение на гештальт-сознания</h3>
                         <p>Запрещено иметь в одной партии более <strong class="accent-text">одного гештальт-сознания</strong> (Машины к этому не относятся).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                      <div class="rule-card danger-bg border-l-4" data-search="поборники чистоты аналоги">
                         <h3 class="text-lg font-semibold danger-text mb-2">3.2. ❌ Запрет Поборников Чистоты</h3>
                         <p>Запрещена гражданская модель <strong class="danger-text">поборники чистоты</strong> и ее аналоги.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                      <div class="rule-card danger-bg border-l-4" data-search="охотники за эволюцией общая генетика">
                         <h3 class="text-lg font-semibold danger-text mb-2">3.3. ❌ Запрет комбинации "Охотники за эволюцией" и "Общая генетика"</h3>
                         <p>Запрещено брать вместе с происхождением “Охотники за эволюцией” гражданскую модель “Общая генетика”.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                 </section>
                 
                 <section id="gameplay" class="content-section hidden">
                     <h1 class="text-3xl font-bold text-white mb-6">Игровой процесс</h1>
                     <p class="text-gray-400 mb-8 intro-paragraph">Этот раздел охватывает правила, регулирующие ваши действия в ходе игры: от дипломатии и федераций до технологий, судостроительства и военных конфликтов. Соблюдение этих правил обеспечивает справедливый баланс сил.</p>
-                    <button class="gemini-button summarize-section-button mb-6">✨ Кратко об этом разделе</button>
 
                     <h2 class="text-2xl font-bold text-white mt-6 mb-4">4. Разное</h2>
                     <div class="rule-card" data-search="война конфедерация федерация обоснование">
                         <h3 class="text-lg font-semibold text-white mb-2">4.1. Обоснование действий</h3>
                         <p>Объявление войны, создание конфедерации должно быть обоснованным решением.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="конфедерация федерация 40 процентов игроков всеобщая угроза">
                         <h3 class="text-lg font-semibold text-white mb-2">4.2. Лимит на членов конфедерации</h3>
                         <p>В одну конфедерацию может вступить не более <strong class="accent-text">40 процентов игроков</strong>, за исключением временного объединения против всеобщей угрозы.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                      <div class="rule-card danger-bg border-l-4" data-search="абуз возвышенные черты поселения генетическое возвышение псионик">
                         <h3 class="text-lg font-semibold danger-text mb-2">4.3. ❌ Запрет абуза черт возвышения</h3>
                         <p>Запрещён абуз возвышенных черт поселений через генетическое возвышение. Если быть подробнее: Не стоит копировать черты возвышения, например с чертой “псионик”.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="возвышение виртуальность 9 колоний">
                         <h3 class="text-lg font-semibold danger-text mb-2">4.4. ❌ Запрет возвышения в Виртуальность</h3>
                         <p>Запрещено возвышение в Виртуальность, если у государства менее <strong class="accent-text">9 колоний</strong>.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <h2 class="text-2xl font-bold text-white mt-8 mb-4">5. Судостроительство/Анклавы</h2>
                     <div class="rule-card danger-bg border-l-4" data-search="дезинтеграторы запрет">
                         <h3 class="text-lg font-semibold danger-text mb-2">5.1. ❌ Запрет дезинтеграторов</h3>
                         <p>Дезинтеграторы под запретом.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="анклавы наемников запрет">
                         <h3 class="text-lg font-semibold danger-text mb-2">5.2. ❌ Запрет создания анклавов наемников (общий)</h3>
                         <p>Создание анклавов наемников запрещено (см. правила ЧВК для исключений).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="космофауна виварий автозабой">
                         <h3 class="text-lg font-semibold danger-text mb-2">5.3. ❌ Запреты по космофауне из вивария</h3>
                         <p>Запрещена космофауна из вивария. Её можно выводить, но не бесплатно получать из вивария. (В виварии должен быть принят указ на автозабой).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="штурмовики космофауна запрет">
                         <h3 class="text-lg font-semibold danger-text mb-2">5.3.1. ❌ Запрет штурмовиков на космофауне</h3>
                         <p>Запрещены штурмовики на космофауне. Вовсе. Все.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="первобытный зов реаниматоры бесплатные флотилии">
                         <h3 class="text-lg font-semibold danger-text mb-2">5.3.2. ❌ Запрет комбинации "Первобытный зов" и "Реаниматоры"</h3>
                         <p>Запрещено брать вместе с происхождением "Первобытный зов" гражданскую модель "Реаниматоры" и их аналоги, чтобы также нельзя было получать бесплатные флотилии.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     
                     <h2 class="text-2xl font-bold text-white mt-8 mb-4">5.А. Новые правила для анклавов ЧВК</h2>
@@ -314,44 +248,37 @@
                         <h3 class="text-lg font-semibold text-white mb-2">1. Требования к созданию анклавов ЧВК</h3>
                         <p>Создавать анклавы может только Корпорация с принятой гражданской моделью «Судостроительные подрядчики» либо «Частные военные компании»*. Без этой модели корпорация не будет считаться ЧВК и должна будет снова принять эту ГМ в кратчайшие сроки, если по какой-то причине её не стало, либо удалить все свои анклавы.</p>
                         <p class="mt-2 text-sm text-gray-400">*То есть должна присутствовать хотя бы одна из этих двух ГМ по желанию или обе сразу.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <div class="rule-card" data-search="наем анклава чвк уведомление разрешение условия сделки дополнительная плата аренда">
                         <h3 class="text-lg font-semibold text-white mb-2">2. Наем анклава ЧВК</h3>
                         <p>Анклав может быть нанят только с уведомлением и разрешением ЧВК, которая его создала. Условия сделки должны согласовываться с самой ЧВК, в доп. условиях ЧВК может потребовать дополнительную плату за аренду его анклава.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <div class="rule-card" data-search="ограничения найма анклава одна империя союз совместная война исключение крупные конфликты федерации">
                         <h3 class="text-lg font-semibold text-white mb-2">2.1. Ограничения по количеству нанимателей</h3>
                         <p>Один анклав может нанять только 1-я империя, в случае если несколько игроков состоят в союзе и ведут совместную войну, анклав предоставляется лишь 1-му из игроков этого союза. (Исключение: крупные конфликты 2х2/3х3 или войны федераций, в которых анклавы могут быть арендованы каждым участником конфликта.)</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <div class="rule-card" data-search="война с чвк расторжение договора аренды анклава агрессор">
                         <h3 class="text-lg font-semibold text-white mb-2">2.2. Война с ЧВК</h3>
                         <p>При объявлении войны самой ЧВК сторона-агрессор должна расторгнуть договор об аренде анклава.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <div class="rule-card" data-search="использование анклавов чвк оборонительная война не наемный флот 50% вместимость">
                         <h3 class="text-lg font-semibold text-white mb-2">2.3. Использование анклавов самой ЧВК</h3>
                         <p>ЧВК может использовать свои анклавы только в случае оборонительной войны, если её собственный не наёмный флот составляет менее 50% от общей вместимости.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <div class="rule-card" data-search="чвк частная военная корпорация федерации пакты взаимопомощи гарант независимости налог кризисы">
                         <h3 class="text-lg font-semibold text-white mb-2">3. Статус и дипломатия ЧВК</h3>
                         <p>ЧВК — это «Частная Военная Корпорация». Она не может состоять в федерациях с другими игроками или заключать пакты о взаимопомощи*. Но она может быть гарантом или объектом гаранта о независимости, в этом случае гарант считается как отдельный договор и может облагаться налогом со стороны ЧВК.</p>
                         <p class="mt-2 text-sm text-gray-400">*Исключения — крупные кризисы.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <div class="rule-card" data-search="внешняя политика чвк объявление войны весомые причины">
                         <h3 class="text-lg font-semibold text-white mb-2">3.1. Внешняя политика ЧВК</h3>
                         <p>ЧВК всё ещё может вести остальную внешнюю политику, в том числе и объявлять войны, если они имеют весомые причины.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
 
                     <h2 class="text-2xl font-bold text-white mt-8 mb-4">6. Военные конфликты</h2>
@@ -359,90 +286,73 @@
                         <h3 class="text-lg font-semibold text-white mb-2">6.1. Объявление притязаний</h3>
                         <p>Запрещено объявлять притязания не граничащие ни с вашей территорией, ни с притязаниями объявленные ранее.</p>
                         <p class="mt-2 text-sm text-gray-400">6.1.1. Исключение: специальное создание анклава причина существования которого должна быть обоснована.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="война конфедераций захват системы 2 планеты вассалитет">
                         <h3 class="text-lg font-semibold text-white mb-2">6.2. Захват в войне конфедераций</h3>
                         <p>В случае войны между конфедерациями подсчет возможного захвата идет от количества систем принадлежащие конфедерации, однако захват недопустим если у игрока осталось менее <strong class="accent-text">двух планет</strong> (вассалитет на данное правило, не распространяется).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="захват столицы притязания 2300 год вассалитет">
                         <h3 class="text-lg font-semibold text-white mb-2">6.2.1. Захват столицы</h3>
                         <p>Захват столицы через притязания не допускается до <strong class="accent-text">2300 года</strong> (вассалитет на данное правило, не распространяется).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="завершение войны 100% усталость согласие">
                         <h3 class="text-lg font-semibold text-white mb-2">6.3. Общие условия завершения войны</h3>
                         <p>Война завершается по обоюдному согласию или же после накопления <strong class="accent-text">100% усталости</strong> обеими сторонами.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="завершение конфликт притязания удержание территории">
                         <h3 class="text-lg font-semibold text-white mb-2">6.3.1. Завершение по притязаниям</h3>
                         <p>Для завершения конфликта по притязаниям необходимо: удерживать все территории из за которых происходит конфликт.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="завершение конфликт унижение удержание столицы">
                         <h3 class="text-lg font-semibold text-white mb-2">6.3.2. Завершение по унижению</h3>
                         <p>Для завершения конфликта по унижению необходимо: удерживать столицу противника.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                      <div class="rule-card" data-search="завершение конфликт навязать идеологию сделать вассалом 80 процентов империи столица заселенные системы">
                         <h3 class="text-lg font-semibold text-white mb-2">6.3.3. Завершение по идеологии/вассалитету</h3>
                         <p>Для завершение конфликта по навязать идеологию/сделать вассалом необходимо: удерживать <strong class="accent-text">80 процентов</strong> империи противника + столица (При подсчете процентного захвата учитываются только заселенные системы).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="завершение конфликт независимость удержание территории 3 года">
                         <h3 class="text-lg font-semibold text-white mb-2">6.3.4. Завершение по независимости</h3>
                         <p>Для завершению конфликта по независимости необходимо: удерживать свои территории в течении <strong class="accent-text">3 лет</strong>. (Таймер не сбрасывается при захвате системы восставшего, однако по окончании срока все системы должны быть освобождены, иначе война будет проиграна).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="завершение конфликт экспроприация 50% территории столица заселенные системы">
                         <h3 class="text-lg font-semibold text-white mb-2">6.3.5. Завершение по экспроприации</h3>
                         <p>Для завершение конфликта по экспроприации необходимо: удерживать <strong class="accent-text">50% территории</strong> + столица (При подсчете процентного захвата учитываются только заселенные системы).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                 </section>
                 
                 <section id="vassalage" class="content-section hidden">
                     <h1 class="text-3xl font-bold text-white mb-6">7. Вассалитет</h1>
                     <p class="text-gray-400 mb-8 intro-paragraph">Правила вассализации направлены на предотвращение злоупотреблений и создание сбалансированных отношений между сюзереном и вассалом. Этот раздел объясняет, что можно и чего нельзя делать при создании и управлении вассалами.</p>
-                    <button class="gemini-button summarize-section-button mb-6">✨ Кратко об этом разделе</button>
                      <div class="rule-card danger-bg border-l-4" data-search="вассал бот феодальное общество">
                         <h2 class="text-xl font-semibold danger-text mb-2">7.1. ❌ Создание вассала-бота</h2>
                         <p>Игрок не может создать вассала-бота при отсутствии гражданской модели "Феодальное общество".</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="вассал бот сюзерен дипломатия">
                         <h2 class="text-xl font-semibold text-white mb-2">7.2. Дипломатия вассала-бота</h2>
                         <p>При существовании вассала-бота, сюзерен обязуется в кратчайшие сроки ограничить ему дипломатию.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="вассал договорные условия 30% базового 60% наука налог">
                         <h2 class="text-xl font-semibold text-white mb-2">7.3. Договорные условия</h2>
                         <p>Вассал обязан принять договорные условия сюзерена, но не более чем на <strong class="accent-text">30% от базового</strong> (пример, нельзя забирать у вассала схолария более 60% науки, или у ставить обычному вассалу/даннику налог больше 30%).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="интеграция вассалов запрет">
                         <h2 class="text-xl font-semibold danger-text mb-2">7.4. ❌ Запрет интеграции вассалов</h2>
                         <p>Запрещена интеграция своих вассалов.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="гриферство насильственная вассализация изменение договора влияние">
                         <h2 class="text-xl font-semibold danger-text mb-2">7.5. ❌ Запрет "гриферить" вассалов</h2>
                         <p>Запрещено “гриферить” после насильственной вассализации (Например, спамить изменением договора, пока у сюзерена не кончится влияние).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card danger-bg border-l-4" data-search="угнетающая вассальная зависимость сбалансированная низкая">
                         <h2 class="text-xl font-semibold danger-text mb-2">7.6. ❌ Запрет угнетающей зависимости</h2>
                         <p>Запрещена угнетающая вассальная зависимость. Даже если она у Вас стоит изначально - Вам нужно немедленно её заменить на сбалансированную, или низкую.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                 </section>
 
                 <section id="expansion" class="content-section hidden">
                     <h1 class="text-3xl font-bold text-white mb-6">8. Экспансия</h1>
                     <p class="text-gray-400 mb-8 intro-paragraph">Экспансия — это основа роста вашей империи. Данное правило регулирует, как и где вы можете расширять свои границы, чтобы обеспечить логичное и предсказуемое развитие галактики.</p>
-                    <button class="gemini-button summarize-section-button mb-6">✨ Кратко об этом разделе</button>
                     <div class="rule-card" data-search="экспансия аванпост соседство червоточина врата звездная катапульта энергичные исследователи">
                         <h2 class="text-xl font-semibold text-white mb-2">8.0. Правило соседства</h2>
                         <p>Можно ставить аванпост только по соседству с другими своими станциями (это правило действует и при связи баз через червоточину и/или врата). Исключение: происхождение "Звёздная катапульта" и гражданская модель "Энергичные исследователи", а так же их аналоги.</p>
@@ -450,42 +360,31 @@
                             <p class="text-center text-gray-400 mb-2">Пример:</p>
                             <img src="https://i.ibb.co/Tj1BqPb/unnamed.png" alt="Пример правила экспансии 8.0" class="rule-example-image mx-auto" onerror="this.alt='Не удалось загрузить пример изображения для правила 8.0'; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22600%22%20height%3D%22400%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text/css%22%3E%23holder_1727538828e%20text%20%7B%20fill%3A%239CA3AF%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A30pt%20%7D%20%3C/style%3E%3C/defs%3E%3Cg%20id%3D%22holder_1727538828e%22%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22%231F2937%22%3E%3C/rect%3E%3Cg%3E%3Ctext%20x%3D%22153.00000762939453%22%20y%3D%22213.4%22%3EПример%20недоступен%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E';">
                         </div>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                 </section>
 
                 <section id="rp" class="content-section hidden">
                     <h1 class="text-3xl font-bold text-white mb-6">9. RP-отыгровка</h1>
                     <p class="text-gray-400 mb-8 intro-paragraph">Ролевая игра — сердце нашего сервера. В этом разделе изложены ключевые принципы отыгрыша, которые помогут вам глубже погрузиться в роль своего государства и сделают взаимодействие с другими игроками более осмысленным и интересным.</p>
-                    <div class="flex flex-wrap gap-4 mb-6 action-button-group">
-                        <button id="suggest-rp-scenario-button" class="gemini-button">✨ Предложить RP сценарий</button>
-                        <button id="generate-names-button" class="gemini-button">✨ Сгенерировать названия</button>
-                    </div>
-                    <button class="gemini-button summarize-section-button mb-6">✨ Кратко об этом разделе</button>
                     <div class="rule-card" data-search="метагейминг альянсы агрессия неприязнь">
                         <h2 class="text-xl font-semibold text-white mb-2">9.1. Запрет метагейминга</h2>
                         <p>Запрещен метагейминг, просим не распространятся о своём государстве, не завязывать дружественные альянсы вне ролевого процесса, не проявлять агрессию по причине личной неприязни. Мы тут собрались для хорошей игры, найдите новые знакомства и погрузитесь в ролевую с головой!</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="отыгрыш правительство кабинет министров">
                         <h2 class="text-xl font-semibold text-white mb-2">9.2. Отыгрыш от лица государства</h2>
                         <p>Вы отыгрываете своё государство, а потому вольны говорить от любого члена правительства, что состоит у Вас в кабинете министров.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="соответствие принципы признаки гражданские модели милитаристы ксенофобы">
                         <h2 class="text-xl font-semibold text-white mb-2">9.3. Соответствие выбранной роли</h2>
                         <p>Соответствуйте выбранным принципам/признакам/гражданским моделям (агрессивное поведение милитаристов, ненависть со стороны ксенофобов и тд.).</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="крупное событие война конфедерация союз новости галактики генеральная ассамблея">
                         <h2 class="text-xl font-semibold text-white mb-2">9.4. Оглашение событий</h2>
                         <p>Любое крупное событие (война, создание конфедерации, заключение союза) должно быть расписано в чате "новости галактики" с основной сутью данного действия. Вместо чата, при сборе всех основных членов государства в голосовом чате “Генеральная Ассамблея” крупные события можно оглашать сразу туда.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                     <div class="rule-card" data-search="кризис согласие ведущего основания">
                         <h2 class="text-xl font-semibold text-white mb-2">9.5. Становление кризисом</h2>
                         <p>Вы можете стать кризисом, при согласии ведущего, но на это должны быть основания. Просим связаться в личных сообщениях и отписать ему все причины.</p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                 </section>
 
@@ -498,25 +397,10 @@
                         <p class="mt-4 border-t border-gray-700 pt-4 text-gray-400">
                            <strong class="text-white">От автора:</strong> Данный сервер был создан именно для ролевой игры. Я действительно прошу относится к данным правилам не как к незыблемому граниту, святой книге или ещё чему. Следуйте им, потому что это в Ваших-же интересах. Доверие - основной принцип моего сервера и я крайне надеюсь, что все просто хорошо проведут время.<br><br>Спасибо за внимание ❤️<br>Удачной игры!
                         </p>
-                        <button class="gemini-button explain-rule-button">✨ Разъяснить</button>
                     </div>
                 </section>
             </div>
         </main>
-    </div>
-
-    <div id="ai-modal" class="fixed inset-0 modal hidden items-center justify-center z-50 p-4">
-        <div class="modal-content-area p-6 rounded-lg shadow-xl max-w-2xl w-full flex flex-col">
-            <div class="flex justify-between items-center mb-4 flex-shrink-0">
-                <h3 id="ai-modal-title" class="text-2xl font-semibold text-white">Ответ от ИИ</h3>
-                <button id="ai-modal-close-button" class="text-gray-400 hover:text-white text-2xl">&times;</button>
-            </div>
-            <div id="ai-modal-body" class="text-gray-300 overflow-y-auto prose-custom flex-1 min-h-0">
-                <div id="ai-loading-indicator" class="loader hidden"></div>
-                <div id="ai-response-content" class="break-words"></div>
-            </div>
-             <button id="ai-modal-close-action-button" class="gemini-button mt-6 flex-shrink-0">Закрыть</button>
-        </div>
     </div>
 
     <script>
@@ -527,13 +411,6 @@
             const sidebar = document.getElementById('sidebar');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             
-            const aiModal = document.getElementById('ai-modal'); 
-            const aiModalTitle = document.getElementById('ai-modal-title');
-            const aiLoadingIndicator = document.getElementById('ai-loading-indicator');
-            const aiResponseContent = document.getElementById('ai-response-content');
-            const aiModalCloseButton = document.getElementById('ai-modal-close-button');
-            const aiModalCloseActionButton = document.getElementById('ai-modal-close-action-button');
-
             function showSection(hash) {
                 const targetId = hash ? hash.substring(1) : 'welcome';
                 contentSections.forEach(section => {
@@ -616,181 +493,6 @@
             });
 
             showSection(location.hash);
-
-            async function callAIAPI(prompt) {
-                aiModal.classList.remove('hidden');
-                aiModal.classList.add('flex');
-                aiLoadingIndicator.classList.remove('hidden');
-                aiResponseContent.innerHTML = '';
-
-                const apiKey = "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";
-                const siteUrl = window.location.origin || "https://your-default-site.neocities.org"; // Замените на ваш URL или оставьте для локального тестирования
-                const siteName = "Иви-клуб Правила"; // Название вашего сайта
-
-                const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
-                const payload = {
-                    model: "mistralai/mistral-7b-instruct-v0.2", // Пример модели, выберите на OpenRouter
-                    messages: [{ role: "user", content: prompt }]
-                };
-
-                const MAX_ATTEMPTS = 2; 
-                const RETRY_DELAY = 3000; 
-
-                for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-                    try {
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${apiKey}`,
-                                'HTTP-Referer': siteUrl, 
-                                'X-Title': siteName 
-                            },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (!response.ok) {
-                            const errorData = await response.json().catch(() => ({ error: { message: response.statusText + " (не удалось получить детали ошибки)" } }));
-                            
-                            if ((response.status === 429 || response.status >= 500 ) && attempt < MAX_ATTEMPTS) {
-                                aiLoadingIndicator.classList.add('hidden');
-                                aiResponseContent.innerHTML = `Сервер OpenRouter API перегружен или запрос отклонен. Повторная попытка ${attempt + 1} из ${MAX_ATTEMPTS} через ${RETRY_DELAY / 1000} сек...`;
-                                await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
-                                aiLoadingIndicator.classList.remove('hidden');
-                                aiResponseContent.innerHTML = ''; 
-                                continue; 
-                            }
-
-                            let errorMessage = `Ошибка OpenRouter API: ${errorData.error?.message || response.statusText} (Статус: ${response.status})`;
-                            if (response.status === 401) {
-                                errorMessage = "Ошибка OpenRouter API: Недействительный API ключ или проблемы с авторизацией. Проверьте ваш ключ. (Статус: 401)";
-                            } else if (response.status === 402) { // Payment Required
-                                errorMessage = "Ошибка OpenRouter API: Требуется оплата или недостаточно средств на счете OpenRouter. (Статус: 402)";
-                            } else if (response.status === 429) {
-                                errorMessage = "Ошибка OpenRouter API: Превышен лимит запросов или квота исчерпана. Пожалуйста, проверьте ваш тарифный план или попробуйте позже. (Статус: 429)";
-                            } else if (response.status >= 500) { 
-                                errorMessage = `Ошибка OpenRouter API: Внутренняя ошибка сервера (${response.status}). Пожалуйста, попробуйте позже.`;
-                            }
-                            throw new Error(errorMessage);
-                        }
-
-                        const result = await response.json();
-                        if (result.choices && result.choices.length > 0 && result.choices[0].message && result.choices[0].message.content) {
-                            let text = result.choices[0].message.content;
-                            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); 
-                            text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');     
-                            text = text.replace(/^\s*-\s+(.*)/gm, '<li>$1</li>');
-                            if (text.includes('<li>')) {
-                                text = '<ul>' + text.replace(/<\/li>\s*<li>/g, '</li><li>') + '</ul>';
-                            }
-                            text = text.replace(/(\r\n|\r|\n){2,}/g, '<br><br>'); 
-                            text = text.replace(/(\r\n|\r|\n)/g, '<br>'); 
-                            aiResponseContent.innerHTML = text;
-                        } else {
-                            throw new Error("Не удалось получить структурированный ответ от ИИ (OpenRouter).");
-                        }
-                        aiLoadingIndicator.classList.add('hidden');
-                        return; 
-
-                    } catch (error) {
-                        console.error(`Попытка ${attempt} не удалась:`, error);
-                        if (attempt >= MAX_ATTEMPTS) {
-                            aiResponseContent.textContent = error.message;
-                            aiLoadingIndicator.classList.add('hidden');
-                            return; 
-                        }
-                         if (!( (error.message.includes("Сервер OpenRouter API перегружен") || error.message.includes("запрос отклонен")) && attempt < MAX_ATTEMPTS) ) {
-                             aiResponseContent.textContent = error.message;
-                             aiLoadingIndicator.classList.add('hidden');
-                             return; 
-                         }
-                    }
-                }
-            }
-
-            document.querySelectorAll('.explain-rule-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const ruleCard = e.target.closest('.rule-card');
-                    let ruleTextContent = '';
-                    
-                    ruleCard.childNodes.forEach(node => {
-                        if (node.nodeType === Node.ELEMENT_NODE && !node.classList.contains('gemini-button') && node.tagName.toLowerCase() !== 'h2' && node.tagName.toLowerCase() !== 'h3') {
-                            if (node.querySelector('img.rule-example-image') && node.querySelector('img.rule-example-image').alt.includes('Не удалось загрузить')) {
-                            } else {
-                                ruleTextContent += node.textContent.trim() + " ";
-                            }
-                        } else if (node.nodeType === Node.TEXT_NODE) {
-                            ruleTextContent += node.textContent.trim() + " ";
-                        }
-                    });
-                    const header = ruleCard.querySelector('h2, h3');
-                    if (header) {
-                        ruleTextContent = header.textContent.trim() + ". " + ruleTextContent;
-                    }
-                    
-                    ruleTextContent = ruleTextContent.replace(/✨ Разъяснить/gi, '').replace(/Пример:/gi, '').trim();
-
-                    if (ruleTextContent) {
-                        aiModalTitle.textContent = "Разъяснение правила";
-                        const prompt = `Пожалуйста, объясни следующее правило из игры Stellaris максимально простыми словами, приведи короткий пример его применения или ситуации, когда оно важно. Ответ дай на русском языке. Правило: "${ruleTextContent}"`;
-                        callAIAPI(prompt);
-                    } else {
-                        aiModalTitle.textContent = "Ошибка";
-                        aiResponseContent.textContent = "Не удалось извлечь текст правила для разъяснения.";
-                        aiModal.classList.remove('hidden');
-                        aiModal.classList.add('flex');
-                        aiLoadingIndicator.classList.add('hidden');
-                    }
-                });
-            });
-
-            const suggestRpScenarioButton = document.getElementById('suggest-rp-scenario-button');
-            if (suggestRpScenarioButton) {
-                suggestRpScenarioButton.addEventListener('click', () => {
-                    aiModalTitle.textContent = "Предложение RP сценария";
-                    const prompt = `Привет! Я играю в Stellaris RP. Пожалуйста, создай короткий (2-3 абзаца) сценарий для ролевой игры в Stellaris. Сценарий должен быть на русском языке и включать завязку и несколько возможных путей развития для игроков. Тема может быть любой из следующих: первый контакт с ранее неизвестной цивилизацией, внутренний политический кризис в империи, обнаружение древнего и могущественного артефакта, неожиданная галактическая угроза (например, вторжение или космическая аномалия). Сделай его интересным и подходящим для отыгрыша.`;
-                    callAIAPI(prompt);
-                });
-            }
-
-            const generateNamesButton = document.getElementById('generate-names-button');
-            if (generateNamesButton) {
-                generateNamesButton.addEventListener('click', () => {
-                    aiModalTitle.textContent = "Генератор Названий";
-                    const prompt = `Привет! Сгенерируй, пожалуйста, список из 7-10 разнообразных названий, подходящих для научно-фантастической вселенной Stellaris. Включи несколько вариантов для названий империй, несколько для планет, несколько для кораблей и несколько для лидеров. Ответ дай на русском языке, сгруппируй по категориям (Империи, Планеты, Корабли, Лидеры), если возможно, и представь в виде списка.`;
-                    callAIAPI(prompt);
-                });
-            }
-
-            document.querySelectorAll('.summarize-section-button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const sectionElement = e.target.closest('.content-section');
-                    const titleElement = sectionElement.querySelector('h1');
-                    const introParagraphElement = sectionElement.querySelector('p.intro-paragraph');
-
-                    const sectionTitle = titleElement ? titleElement.textContent.trim() : "Текущий раздел";
-                    const sectionIntro = introParagraphElement ? introParagraphElement.textContent.trim() : "Общая информация по данному разделу.";
-                    
-                    aiModalTitle.textContent = `Кратко: ${sectionTitle}`;
-                    const prompt = `Пожалуйста, сделай очень краткое содержание (буквально 2-3 предложения, самую суть) для раздела правил Stellaris под названием "${sectionTitle}". Этот раздел обычно описывает следующее: "${sectionIntro}". Сосредоточься на ключевых моментах, которые игрок должен запомнить из этого раздела. Ответ дай на русском языке.`;
-                    callAIAPI(prompt);
-                });
-            });
-
-            function closeModal() {
-                aiModal.classList.add('hidden');
-                aiModal.classList.remove('flex');
-                aiResponseContent.innerHTML = '';
-                aiLoadingIndicator.classList.add('hidden');
-            }
-
-            aiModalCloseButton.addEventListener('click', closeModal);
-            aiModalCloseActionButton.addEventListener('click', closeModal);
-            aiModal.addEventListener('click', (e) => { 
-                if (e.target === aiModal) {
-                    closeModal();
-                }
-            });
         });
     </script>
 </body>
