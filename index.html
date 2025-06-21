@@ -20,8 +20,8 @@
         .accent-text { color: #818cf8; }
         .danger-text { color: #f87171; }
         .warning-text { color: #fbbf24; }
-        .danger-bg { background-color: rgba(239, 68, 68, 0.1); border-left-color: #ef4444; }
-        .warning-bg { background-color: rgba(245, 158, 11, 0.1); border-left-color: #f59e0b; }
+        .danger-bg { background-color: rgba(239, 68, 68, 0.1); border-left-color: #ef4444; border-left-width: 4px; }
+        .warning-bg { background-color: rgba(245, 158, 11, 0.1); border-left-color: #f59e0b; border-left-width: 4px; }
         .sidebar { transition: transform 0.3s ease-in-out; }
         .main-content { transition: margin-left 0.3s ease-in-out; }
         
@@ -60,6 +60,7 @@
         .search-input {
             background-color: #374151;
             border: 1px solid #4b5563;
+            color: #e5e7eb;
         }
         .rule-example-image {
             max-width: 100%;
@@ -152,7 +153,7 @@
         <main class="main-content flex-1 p-6 md:p-10">
             <div class="sticky top-0 z-10 mb-6 bg-gray-800/50 backdrop-blur-sm -mx-10 px-10 pt-6 pb-4">
                 <input id="search-input" type="text" placeholder="🔍 Найти правило..." class="search-input w-full p-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                </div>
+            </div>
 
             <div id="content-container">
 
@@ -163,7 +164,7 @@
                     <div class="rule-card mb-8" data-search="приветствие введение дип рп сервер голосование">
                         <div class="rule-card-header">
                             <h3 class="text-xl font-semibold text-white">Введение от автора</h3>
-                            </div>
+                        </div>
                         <div class="rule-card-content">
                             <p class="text-lg text-gray-300 mb-3">Доброго, дорогой игрок.</p>
                             <p class="text-gray-400 mb-3">Данные правила были изначально позаимствованы с Дип РП Сервера, за что им огромное спасибо, создатели данных правил дали отличный толчок моей задумке. Однако, задумывается что данные правила будут изменяться силами сообщества, путем голосований.</p>
@@ -179,7 +180,7 @@
                     <div class="rule-card" data-search="ключевая идея ролевая игра доверие">
                          <div class="rule-card-header">
                             <h3 class="text-xl font-semibold text-white">Ключевая идея сервера</h3>
-                             </div>
+                        </div>
                         <div class="rule-card-content">
                             <p class="text-gray-400">Данный сервер был создан именно для ролевой игры. Мы просим относиться к данным правилам не как к незыблемому граниту, а как к руководству для создания лучшего общего опыта. Доверие — основной принцип нашего сервера, и мы надеемся, что все просто хорошо проведут время. Удачной игры!</p>
                         </div>
@@ -532,31 +533,32 @@
                 <section id="vassalage" class="content-section hidden">
                     <h1 class="text-3xl font-bold text-white mb-6">7. Вассалитет</h1>
                     <p class="text-gray-400 mb-8 intro-paragraph">Правила вассализации направлены на предотвращение злоупотреблений и создание сбалансированных отношений между сюзереном и вассалом. Этот раздел объясняет, что можно и чего нельзя делать при создании и управлении вассалами.</p>
-                     <div class="rule-card danger-bg border-l-4" data-search="вассал бот феодальное общество">
+                     <div class="rule-card" data-search="вассал бот феодальное общество">
                         <div class="rule-card-header">
-                            <h2 class="text-xl font-semibold danger-text">7.1. ❌ Создание вассала-бота</h2>
+                            <h2 class="text-xl font-semibold text-white">7.1. Создание вассала-бота</h2>
                         </div>
                         <div class="rule-card-content">
-                            <p>Игрок не может создать вассала-бота при отсутствии гражданской модели "Феодальное общество".</p>
+                            <p>Игрок может создать вассала-бота только при наличии гражданской модели "Феодальное общество".</p>
                         </div>
                     </div>
-                    <div class="rule-card" data-search="вассал бот сюзерен дипломатия">
+                    <div class="rule-card warning-bg" data-search="вассал бот сюзерен дипломатия феодал">
                         <div class="rule-card-header">
-                            <h2 class="text-xl font-semibold text-white">7.2. Дипломатия вассала-бота</h2>
+                            <h2 class="text-xl font-semibold warning-text">7.2. Дипломатия вассала-бота</h2>
                         </div>
                         <div class="rule-card-content">
-                             <p>При существовании вассала-бота, сюзерен обязуется в кратчайшие сроки ограничить ему дипломатию.</p>
+                             <p>При существовании вассала-бота, сюзерен обязуется в кратчайшие сроки ограничить ему дипломатию. Исключение: сюзерены с гражданской моделью «Феодальное общество» не могут ограничивать дипломатию своим вассалам-ботам, и данное правило на них не распространяется.</p>
                         </div>
                     </div>
-                    <div class="rule-card" data-search="вассал договорные условия 30% базового 60% наука налог">
+                    <div class="rule-card" data-search="вассал договорные условия 30% базового 45% феодал 60% наука налог">
                         <div class="rule-card-header">
                             <h2 class="text-xl font-semibold text-white">7.3. Договорные условия</h2>
                         </div>
                         <div class="rule-card-content">
-                             <p>Вассал обязан принять договорные условия сюзерена, но не более чем на <strong class="accent-text">30% от базового</strong> (пример, нельзя забирать у вассала схолария более 60% науки, или у ставить обычному вассалу/даннику налог больше 30%).</p>
+                             <p>Вассал обязан принять договорные условия сюзерена, но не более чем на <strong class="accent-text">30% от базового</strong>. Исключение: для сюзеренов с гражданской моделью «Феодальное общество» этот порог увеличен до <strong class="accent-text">45%</strong> для созданных ими вассалов.</p>
+                             <p class="mt-2 text-sm text-gray-400">(Пример: нельзя забирать у вассала-схолария более 60% науки (или 75% для феодала), или ставить обычному вассалу налог больше 30% (или 45% для феодала).)</p>
                         </div>
                     </div>
-                    <div class="rule-card danger-bg border-l-4" data-search="интеграция вассалов запрет">
+                    <div class="rule-card danger-bg" data-search="интеграция вассалов запрет">
                         <div class="rule-card-header">
                              <h2 class="text-xl font-semibold danger-text">7.4. ❌ Запрет интеграции вассалов</h2>
                         </div>
@@ -564,7 +566,7 @@
                             <p>Запрещена интеграция своих вассалов.</p>
                         </div>
                     </div>
-                    <div class="rule-card danger-bg border-l-4" data-search="гриферство насильственная вассализация изменение договора влияние">
+                    <div class="rule-card danger-bg" data-search="гриферство насильственная вассализация изменение договора влияние">
                         <div class="rule-card-header">
                             <h2 class="text-xl font-semibold danger-text">7.5. ❌ Запрет "гриферить" вассалов</h2>
                         </div>
@@ -572,7 +574,7 @@
                              <p>Запрещено “гриферить” после насильственной вассализации (Например, спамить изменением договора, пока у сюзерена не кончится влияние).</p>
                         </div>
                     </div>
-                    <div class="rule-card danger-bg border-l-4" data-search="угнетающая вассальная зависимость сбалансированная низкая">
+                    <div class="rule-card danger-bg" data-search="угнетающая вассальная зависимость сбалансированная низкая">
                         <div class="rule-card-header">
                             <h2 class="text-xl font-semibold danger-text">7.6. ❌ Запрет угнетающей зависимости</h2>
                         </div>
@@ -714,101 +716,100 @@
         });
         
         // --- Search and Filter Logic ---
-        // Store original content of elements that will be highlighted
         const originalContentMap = new Map();
 
         function highlightTextInElement(element, term) {
-            if (!element || !term) return;
+            if (!element || !term || term.length < 1) return;
             
-            if (!originalContentMap.has(element)) {
-                originalContentMap.set(element, element.innerHTML);
+            let originalHTML = originalContentMap.get(element);
+            if (originalHTML === undefined) {
+                originalHTML = element.innerHTML;
+                originalContentMap.set(element, originalHTML);
             }
             
             const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-            try {
-                // Try to replace only within text nodes to avoid breaking HTML structure
-                let newHTML = originalContentMap.get(element).replace(regex, `<mark>$1</mark>`);
-                 if (element.innerHTML !== newHTML) { // Check if actual change happened
-                    element.innerHTML = newHTML;
-                 }
-            } catch (e) {
-                console.error("Error highlighting text:", e, element);
-                // Fallback to original if error
-                element.innerHTML = originalContentMap.get(element);
+            let currentHTML = originalHTML.replace(regex, `<mark>$1</mark>`);
+            if (element.innerHTML !== currentHTML) {
+                element.innerHTML = currentHTML;
             }
         }
 
-        function unhighlightTextInElement(element) {
-            if (originalContentMap.has(element)) {
-                element.innerHTML = originalContentMap.get(element);
-                originalContentMap.delete(element);
-            } else { // Fallback if original content wasn't stored for some reason
-                const marks = element.querySelectorAll('mark');
-                marks.forEach(mark => {
-                    const parent = mark.parentNode;
-                    parent.replaceChild(document.createTextNode(mark.textContent), mark);
-                    parent.normalize(); // Merges adjacent text nodes
-                });
-            }
+        function unhighlightAll() {
+            originalContentMap.forEach((html, element) => {
+                 if (element && typeof element.innerHTML !== 'undefined') { 
+                    element.innerHTML = html;
+                }
+            });
+            originalContentMap.clear();
         }
         
-        function applyFilters() {
+       function applyFilters() {
             const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
-            const currentActiveSectionId = location.hash ? location.hash.substring(1) : 'welcome';
+            const currentNavTarget = location.hash ? location.hash.substring(1) : 'welcome';
+            
+            unhighlightAll(); 
 
+            if (searchTerm === '') {
+                // No search term, just show the current navigation target section
+                contentSections.forEach(s => { 
+                    if (s.id === currentNavTarget || (currentNavTarget === 'welcome' && s.id === 'welcome')) {
+                        s.classList.remove('hidden');
+                        s.querySelectorAll('.rule-card').forEach(rc => rc.classList.remove('hidden'));
+                    } else {
+                        s.classList.add('hidden');
+                    }
+                });
+                return;
+            }
+
+            // Search term is active, filter all sections
             contentSections.forEach(section => {
-                section.querySelectorAll('.rule-card').forEach(card => unhighlightTextInElement(card)); // Unhighlight all first
-
-                if (section.id !== currentActiveSectionId && currentActiveSectionId !== 'welcome') {
-                    section.classList.add('hidden');
-                    return;
-                }
-                section.classList.remove('hidden'); 
-
-                let sectionHasVisibleCardsDueToSearch = false;
+                let sectionHasVisibleContent = false;
                 const cardsInSection = section.querySelectorAll('.rule-card');
-
+                
                 cardsInSection.forEach(card => {
-                    const cardText = card.dataset.search || card.textContent.toLowerCase();
-                    const matchesSearch = searchTerm === '' || cardText.includes(searchTerm);
-
+                    const cardTextForSearch = card.dataset.search || card.textContent.toLowerCase();
+                    const matchesSearch = cardTextForSearch.includes(searchTerm);
                     card.classList.toggle('hidden', !matchesSearch);
-
-                    if (matchesSearch && searchTerm !== '') {
-                        // Highlight within specific sub-elements of the card to avoid breaking event listeners on header
+                    if (matchesSearch) {
+                        sectionHasVisibleContent = true;
                         const elementsToHighlight = [
-                            ...card.querySelectorAll('.rule-card-header h2, .rule-card-header h3'),
-                            ...card.querySelectorAll('.rule-card-content p, .rule-card-content li')
+                            ...card.querySelectorAll('.rule-card-header h2, .rule-card-header h3, .rule-card-header .danger-text, .rule-card-header .warning-text'),
+                            ...card.querySelectorAll('.rule-card-content p, .rule-card-content li, .rule-card-content ul, .rule-card-content div')
                         ];
                         elementsToHighlight.forEach(el => highlightTextInElement(el, searchTerm));
                     }
-                    if (matchesSearch) {
-                        sectionHasVisibleCardsDueToSearch = true;
+                });
+
+                const sectionTitleElement = section.querySelector('h1');
+                const sectionIntroParagraph = section.querySelector('p.intro-paragraph');
+                const sectionSubTitlesH2 = section.querySelectorAll('h2'); 
+                
+                let titleOrIntroMatches = false;
+                if (sectionTitleElement && sectionTitleElement.textContent.toLowerCase().includes(searchTerm)) {
+                    titleOrIntroMatches = true;
+                    highlightTextInElement(sectionTitleElement, searchTerm);
+                }
+                 if (sectionIntroParagraph && sectionIntroParagraph.textContent.toLowerCase().includes(searchTerm)) {
+                    titleOrIntroMatches = true;
+                    highlightTextInElement(sectionIntroParagraph, searchTerm);
+                }
+                sectionSubTitlesH2.forEach(subTitleEl => { 
+                     if (subTitleEl.textContent.toLowerCase().includes(searchTerm)) {
+                        titleOrIntroMatches = true;
+                        highlightTextInElement(subTitleEl, searchTerm);
                     }
                 });
                 
-                if (section.id !== 'welcome' && !sectionHasVisibleCardsDueToSearch && searchTerm !== '') {
-                    // Hides section if no cards match search (except welcome)
-                    // section.classList.add('hidden'); 
-                } else if (section.id !== 'welcome') {
+                if (sectionHasVisibleContent || titleOrIntroMatches) {
                     section.classList.remove('hidden');
+                    if (titleOrIntroMatches && !sectionHasVisibleContent) {
+                        cardsInSection.forEach(card => card.classList.add('hidden'));
+                    }
+                } else {
+                    section.classList.add('hidden');
                 }
             });
-            
-            const welcomeSection = document.getElementById('welcome');
-            if (welcomeSection) {
-                 if (currentActiveSectionId === 'welcome' && searchTerm === '') {
-                     welcomeSection.classList.remove('hidden');
-                 } else if (currentActiveSectionId === 'welcome' && searchTerm !== ''){
-                     // Welcome section cards also get filtered by applyFilters if they have data-search
-                     // Check if any card in welcome is visible
-                     let welcomeHasVisible = false;
-                     welcomeSection.querySelectorAll('.rule-card').forEach(rc => {
-                         if(!rc.classList.contains('hidden')) welcomeHasVisible = true;
-                     });
-                    //  welcomeSection.classList.toggle('hidden', !welcomeHasVisible && searchTerm !== '');
-                 }
-            }
         }
 
 
@@ -821,15 +822,12 @@
         });
 
         window.addEventListener('popstate', () => { 
-            showSection(location.hash);
-            if (searchInput) searchInput.value = ''; 
-            applyFilters();
+            showSection(location.hash); 
         });
 
         // Initial setup
         showSection(location.hash); 
 
-        // --- Tooltip Logic ---
         const termDefinitions = {
             "гештальт-сознания": "Коллективный разум, например, улья или машинного интеллекта, где индивидуальные единицы не обладают свободой воли.",
             "метагейминга": "Использование информации, полученной вне игрового процесса (OOC - Out Of Character), для получения преимуществ внутри игры (IC - In Character).",
@@ -838,8 +836,14 @@
         };
 
         document.querySelectorAll('.tooltip-term').forEach(termElement => {
-            const termKey = termElement.textContent.trim().toLowerCase().replace(/.$/, ''); // try to remove trailing s or other chars for plurals/cases
-            const definition = termElement.dataset.tooltip || termDefinitions[termKey] || termDefinitions[termElement.textContent.trim().toLowerCase()] || "Определение не найдено.";
+            const termKeyOriginal = termElement.textContent.trim();
+            const termKeyLower = termKeyOriginal.toLowerCase();
+            const termKeyNoEnding = termKeyLower.replace(/(а|я|ы|и|ой|ов|ам|ами|ах)$/, '');
+
+            let definition = termElement.dataset.tooltip || 
+                             termDefinitions[termKeyLower] || 
+                             termDefinitions[termKeyNoEnding] || 
+                             "Определение не найдено.";
             
             const tooltipSpan = document.createElement('span');
             tooltipSpan.classList.add('tooltip-text');
